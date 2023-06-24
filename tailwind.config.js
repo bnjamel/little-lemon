@@ -2,7 +2,12 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      backdropSepia: {
+        25: ".25",
+        75: ".75",
+      },
+    },
   },
   plugins: [],
 };
