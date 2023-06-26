@@ -1,13 +1,19 @@
 import React from "react";
 import Header from "../Components/Header";
 import Main from "../Components/Main";
+import { motion } from "framer-motion";
 
 function Home() {
   return (
-    <div className="pt-[72px]">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="pt-[72px]"
+    >
       <Header />
       <Main />
-    </div>
+    </motion.div>
   );
 }
 
