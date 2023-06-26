@@ -1,5 +1,6 @@
 import React from "react";
 import ResturantFood from "../assets/imgs/restauranfood.jpg";
+import { Link } from "react-router-dom";
 
 function Header() {
   return (
@@ -17,7 +18,7 @@ function Header() {
             eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
           <button className="bg-[#F4CE14] px-[1.5rem] py-[.5rem] my-[1rem] rounded-lg transition ease-in-out hover:scale-105">
-            <a href="#">Reserve a Table</a>
+            <Link to="/booking">Reserve a Table</Link>
           </button>
         </div>
         <div className="header__right flex-1">
