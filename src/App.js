@@ -7,20 +7,22 @@ import Home from "./Pages/Home";
 import Menu from "./Pages/Menu";
 import Booking from "./Pages/Booking";
 import { AnimatePresence } from "framer-motion";
-// import {} from "framer-motion/dist/framer-motion"
+import Login from "./Pages/Login";
+
 
 function App() {
   const location = useLocation();
 
   return (
     <>
-      <div className="min-w-[300px]" id="smooth-scrollbar">
+      <div className="min-w-[300px]">
         <Nav />
         <AnimatePresence>
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<Home />} />
             <Route path="/menu" element={<Menu />} />
             <Route path="/booking" element={<Booking />} />
+            <Route path="/login" element={<Login />} />
           </Routes>
         </AnimatePresence>
         <Footer />

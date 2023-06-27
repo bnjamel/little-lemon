@@ -66,7 +66,18 @@ function Nav() {
             <a href="#">Order Online</a>
           </li>
           <li className="mx-4">
-            <a href="#">Login</a>
+            <NavLink
+              className={({ isActive, isPending }) =>
+                isPending
+                  ? "pending"
+                  : isActive
+                  ? "font-semibold border-b text-[#495E57]"
+                  : ""
+              }
+              to="/login"
+            >
+              login
+            </NavLink>
           </li>
         </ul>
       </div>
@@ -130,10 +141,19 @@ function Nav() {
             </a>
           </li>
           <li className="mx-4 p-1 rounded-md transition ease-in-out hover:bg-slate-200 text-[14px] flex-nowrap">
-            <a href="#" className="flex justify-center items-center flex-col">
+            <NavLink
+              className={({ isActive, isPending }) =>
+                isPending
+                  ? "pending flex justify-center items-center flex-col"
+                  : isActive
+                  ? "font-semibold border-b p-1 text-[#495E57] rounded-md transition ease-in-out bg-slate-200 flex justify-center items-center flex-col"
+                  : "flex justify-center p-1 items-center flex-col"
+              }
+              to="/login"
+            >
               <AccountBoxOutlinedIcon className="text-[#495E57]" />
               Login
-            </a>
+            </NavLink>
           </li>
         </ul>
       </section>

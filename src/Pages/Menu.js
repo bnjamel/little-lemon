@@ -12,8 +12,8 @@ function Menu() {
   return (
     <motion.div
       initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+      animate={{ opacity: 1, transition: { duration: 0.2 } }}
+      exit={{ opacity: 0, transition: { duration: 0.2 } }}
       className="menu pt-[72px]"
     >
       <div className="bg-[#495E57]">
