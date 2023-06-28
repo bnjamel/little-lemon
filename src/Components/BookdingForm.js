@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 function BookdingForm({ availableTime }) {
+  let navigator = useNavigate();
+
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [guests, setGuests] = useState(0);
@@ -29,7 +33,18 @@ function BookdingForm({ availableTime }) {
   });
 
   const onSubmit = (data) => {
-    console.log(data);
+    const notificationMessage = `Reservation successful! We are excited to have you dine with us on ${data.date} [${data.time}]`;
+    toast.success(notificationMessage, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+    navigator("/");
   };
 
   return (
@@ -58,149 +73,156 @@ function BookdingForm({ availableTime }) {
           onSubmit={onSubmit}
           validationSchema={validation}
         >
-          <Form className="grid grid-cols-1  sm:grid-cols-2 m-4">
-            <div className="flex flex-col justify-start sm:mx-2">
-              <label
-                className="text-[18px] pb-1 pt-3 text-gray-600 font-bold "
-                htmlFor="res-name"
-              >
-                Name
-              </label>
-              <Field
-                name="name"
-                className="py-2 px-4 rounded-md bg-slate-50 shadow-sm border outline-none transition ease-in-out focus:border-black focus:shadow-md focus:shadow-[#bad5cc5a]"
-                placeholder="name"
-                type="text"
-                id="res-name"
-              />
-              <ErrorMessage
-                className="text-red-500"
-                name="name"
-                component={"span"}
-              />
-            </div>
-            <div className="flex flex-col justify-start sm:mx-2">
-              <label
-                className="text-[18px] pb-1 pt-3 text-gray-600 font-bold "
-                htmlFor="res-email"
-              >
-                E-mail
-              </label>
-              <Field
-                name="email"
-                className="py-2 px-4 rounded-md bg-slate-50 shadow-sm border outline-none transition ease-in-out focus:border-black focus:shadow-md focus:shadow-[#bad5cc5a]"
-                placeholder="email"
-                type="email"
-                id="res-email"
-              />
-              <ErrorMessage
-                className="text-red-500"
-                name="email"
-                component={"span"}
-              />
-            </div>
-            <div className="flex flex-col justify-start sm:mx-2">
-              <label
-                className="text-[18px] pb-1 pt-3 text-gray-600 font-bold "
-                htmlFor="res-date"
-              >
-                Date
-              </label>
-              <Field
-                name="date"
-                className="py-2 px-4 rounded-md bg-slate-50 shadow-sm border outline-none transition ease-in-out focus:border-black focus:shadow-md focus:shadow-[#bad5cc5a]"
-                type="date"
-                id="res-date"
-              />
-              <ErrorMessage
-                className="text-red-500"
-                name="date"
-                component={"span"}
-              />
-            </div>
+          {({ isValid, isSubmitting }) => (
+            <Form className="grid grid-cols-1  sm:grid-cols-2 m-4">
+              <div className="flex flex-col justify-start sm:mx-2">
+                <label
+                  className="text-[18px] pb-1 pt-3 text-gray-600 font-bold "
+                  htmlFor="res-name"
+                >
+                  Name
+                </label>
+                <Field
+                  name="name"
+                  className="py-2 px-4 rounded-md bg-slate-50 shadow-sm border outline-none transition ease-in-out focus:border-black focus:shadow-md focus:shadow-[#bad5cc5a]"
+                  placeholder="name"
+                  type="text"
+                  id="res-name"
+                />
+                <ErrorMessage
+                  className="text-red-500"
+                  name="name"
+                  component={"span"}
+                />
+              </div>
+              <div className="flex flex-col justify-start sm:mx-2">
+                <label
+                  className="text-[18px] pb-1 pt-3 text-gray-600 font-bold "
+                  htmlFor="res-email"
+                >
+                  E-mail
+                </label>
+                <Field
+                  name="email"
+                  className="py-2 px-4 rounded-md bg-slate-50 shadow-sm border outline-none transition ease-in-out focus:border-black focus:shadow-md focus:shadow-[#bad5cc5a]"
+                  placeholder="email"
+                  type="email"
+                  id="res-email"
+                />
+                <ErrorMessage
+                  className="text-red-500"
+                  name="email"
+                  component={"span"}
+                />
+              </div>
+              <div className="flex flex-col justify-start sm:mx-2">
+                <label
+                  className="text-[18px] pb-1 pt-3 text-gray-600 font-bold "
+                  htmlFor="res-date"
+                >
+                  Date
+                </label>
+                <Field
+                  name="date"
+                  className="py-2 px-4 rounded-md bg-slate-50 shadow-sm border outline-none transition ease-in-out focus:border-black focus:shadow-md focus:shadow-[#bad5cc5a]"
+                  type="date"
+                  id="res-date"
+                />
+                <ErrorMessage
+                  className="text-red-500"
+                  name="date"
+                  component={"span"}
+                />
+              </div>
 
-            <div className="flex flex-col justify-start sm:mx-2">
-              <label
-                className="text-[18px] pb-1 pt-3 text-gray-600 font-bold "
-                htmlFor="res-time"
-              >
-                Time
-              </label>
-              <Field
-                as="select"
-                name="time"
-                required
-                className="py-2 px-4 rounded-md bg-slate-50 shadow-sm border outline-none transition ease-in-out focus:border-black focus:shadow-md focus:shadow-[#bad5cc5a]"
-                id="res-time"
-              >
-                {availableTime.map((time) => (
-                  <option value={time}>{time}</option>
-                ))}
-              </Field>
-              <ErrorMessage
-                className="text-red-500"
-                name="time"
-                component={"span"}
-              />
-            </div>
-            <div className="flex flex-col justify-start sm:mx-2">
-              <label
-                className="text-[18px] pb-1 pt-3 text-gray-600 font-bold "
-                htmlFor="guests"
-              >
-                Number of guests
-              </label>
-              <Field
-                name="guests"
-                className="py-2 px-4 rounded-md bg-slate-50 shadow-sm border outline-none transition ease-in-out focus:border-black focus:shadow-md focus:shadow-[#bad5cc5a]"
-                type="number"
-                id="guests"
-                placeholder="1"
-              />
-              <ErrorMessage
-                className="text-red-500"
-                name="guests"
-                component={"span"}
-              />
-            </div>
-            <div className="flex flex-col justify-start sm:mx-2">
-              <label
-                className="text-[18px] pb-1 pt-3 text-gray-600 font-bold "
-                htmlFor="occasion"
-              >
-                Occasion
-              </label>
-              <Field
-                as="select"
-                name="occasion"
-                className="py-2 px-4 rounded-md bg-slate-50 shadow-sm border outline-none transition ease-in-out focus:border-black focus:shadow-md focus:shadow-[#bad5cc5a]"
-                id="occasion"
-              >
-                <option value="" className="">
-                  occasion
-                </option>
-                <option value="Birthday" className="">
-                  Birthday
-                </option>
-                <option value="Aniversary" className="">
-                  Aniversary
-                </option>
-              </Field>
-              <ErrorMessage
-                className="text-red-500"
-                name="occasion"
-                component={"span"}
-              />
-            </div>
-            <div className="flex flex-col justify-start items-start">
-              <button
-                type="submit"
-                className="bg-[#495E57] mt-6 text-[#F4CE14] text-[16px] rounded-md py-2 px-4 cursor-pointer hover:scale-[1.04]"
-              >
-                Make Your Reservation
-              </button>
-            </div>
-          </Form>
+              <div className="flex flex-col justify-start sm:mx-2">
+                <label
+                  className="text-[18px] pb-1 pt-3 text-gray-600 font-bold "
+                  htmlFor="res-time"
+                >
+                  Time
+                </label>
+                <Field
+                  as="select"
+                  name="time"
+                  required
+                  className="py-2 px-4 rounded-md bg-slate-50 shadow-sm border outline-none transition ease-in-out focus:border-black focus:shadow-md focus:shadow-[#bad5cc5a]"
+                  id="res-time"
+                >
+                  {availableTime.map((time) => (
+                    <option value={time}>{time}</option>
+                  ))}
+                </Field>
+                <ErrorMessage
+                  className="text-red-500"
+                  name="time"
+                  component={"span"}
+                />
+              </div>
+              <div className="flex flex-col justify-start sm:mx-2">
+                <label
+                  className="text-[18px] pb-1 pt-3 text-gray-600 font-bold "
+                  htmlFor="guests"
+                >
+                  Number of guests
+                </label>
+                <Field
+                  name="guests"
+                  className="py-2 px-4 rounded-md bg-slate-50 shadow-sm border outline-none transition ease-in-out focus:border-black focus:shadow-md focus:shadow-[#bad5cc5a]"
+                  type="number"
+                  id="guests"
+                  placeholder="1"
+                />
+                <ErrorMessage
+                  className="text-red-500"
+                  name="guests"
+                  component={"span"}
+                />
+              </div>
+              <div className="flex flex-col justify-start sm:mx-2">
+                <label
+                  className="text-[18px] pb-1 pt-3 text-gray-600 font-bold "
+                  htmlFor="occasion"
+                >
+                  Occasion
+                </label>
+                <Field
+                  as="select"
+                  name="occasion"
+                  className="py-2 px-4 rounded-md bg-slate-50 shadow-sm border outline-none transition ease-in-out focus:border-black focus:shadow-md focus:shadow-[#bad5cc5a]"
+                  id="occasion"
+                >
+                  <option value="" className="">
+                    occasion
+                  </option>
+                  <option value="Birthday" className="">
+                    Birthday
+                  </option>
+                  <option value="Aniversary" className="">
+                    Aniversary
+                  </option>
+                </Field>
+                <ErrorMessage
+                  className="text-red-500"
+                  name="occasion"
+                  component={"span"}
+                />
+              </div>
+              <div className="flex flex-col justify-start items-start">
+                <button
+                  disabled={!isValid || isSubmitting}
+                  type="submit"
+                  className={`bg-[#495E57] mt-6 text-[#F4CE14] text-[16px] rounded-md py-2 px-4 cursor-pointer hover:scale-[1.04] ${
+                    !isValid
+                      ? "bg-slate-300 text-black cursor-not-allowed"
+                      : "bg-[#495E57] mt-6 text-[#F4CE14]"
+                  }`}
+                >
+                  Make Your Reservation
+                </button>
+              </div>
+            </Form>
+          )}
         </Formik>
       </section>
     </section>

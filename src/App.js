@@ -9,6 +9,9 @@ import Booking from "./Pages/Booking";
 import { AnimatePresence } from "framer-motion";
 import Login from "./Pages/Login";
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function App() {
   const location = useLocation();
@@ -27,6 +30,7 @@ function App() {
         </AnimatePresence>
         <Footer />
       </div>
+      <ToastContainer />
     </>
   );
 }
