@@ -14,7 +14,12 @@ function Nav() {
     <nav className="py-4 fixed w-full bg-white min-w-[300px] z-10 shadow-lg">
       <div className="container m-auto px-4 sm:px-0 flex sm:flex-col md:flex-row justify-center sm:justify-between sm:items-center">
         <div className="logo">
-          <img src={Logo} className="min-w-[120px]" alt="little lemon logo" />
+          <img
+            src={Logo}
+            className="min-w-[120px]"
+            alt="little lemon logo"
+            loading="lazy"
+          />
         </div>
         <ul className="hidden sm:flex text-[14px] md:text-[16px]">
           <li className="mx-4">
@@ -82,8 +87,8 @@ function Nav() {
         </ul>
       </div>
       <section className="sm:hidden">
-        <ul className="fixed left-0 bottom-0 z-50 flex bg-slate-50 w-full justify-between py-2 px-2 drop-shadow-[0_15px_15px_rgba(0,0,0,0.25)]">
-          <li className="mx-4 p-1 rounded-md transition ease-in-out hover:bg-slate-200 text-[14px] flex-nowrap">
+        <ul className="fixed left-0 bottom-0 z-50 flex bg-slate-50 w-full justify-between px-1 sm:px-2 drop-shadow-[0_15px_15px_rgba(0,0,0,0.25)]">
+          <li className="sm:mx-4 p-1 rounded-md transition ease-in-out hover:bg-slate-200 text-[14px] flex-nowrap">
             <NavLink
               className={({ isActive, isPending }) =>
                 isPending
@@ -98,13 +103,13 @@ function Nav() {
               Home
             </NavLink>
           </li>
-          <li className="mx-4 p-1 rounded-md transition ease-in-out hover:bg-slate-200 text-[14px] flex-nowrap">
+          <li className="sm:mx-4 p-1 rounded-md transition ease-in-out hover:bg-slate-200 text-[14px] flex-nowrap">
             <a href="#" className="flex justify-center items-center flex-col">
               <InfoOutlinedIcon className="text-[#495E57]" />
               About
             </a>
           </li>
-          <li className="mx-4 p-1 rounded-md transition ease-in-out hover:bg-slate-200 text-[14px] flex-nowrap">
+          <li className="sm:mx-4 p-1 rounded-md transition ease-in-out hover:bg-slate-200 text-[14px] flex-nowrap">
             <NavLink
               className={({ isActive, isPending }) =>
                 isPending
@@ -119,7 +124,7 @@ function Nav() {
               Menu
             </NavLink>
           </li>
-          <li className="mx-4 p-1 rounded-md transition ease-in-out hover:bg-slate-200 text-[14px] flex-nowrap">
+          <li className="sm:mx-4 p-1 rounded-md transition ease-in-out hover:bg-slate-200 text-[14px] flex-nowrap">
             <NavLink
               className={({ isActive, isPending }) =>
                 isPending
@@ -134,13 +139,13 @@ function Nav() {
               Reservations
             </NavLink>
           </li>
-          <li className="mx-4 p-1 rounded-md transition ease-in-out hover:bg-slate-200 text-[14px] flex-nowrap">
+          <li className="sm:mx-4 p-1 rounded-md transition ease-in-out hover:bg-slate-200 text-[14px] flex-nowrap">
             <a href="#" className="flex justify-center items-center flex-col">
               <ShoppingBasketOutlinedIcon className="text-[#495E57]" />
               Order
             </a>
           </li>
-          <li className="mx-4 p-1 rounded-md transition ease-in-out hover:bg-slate-200 text-[14px] flex-nowrap">
+          <li className="sm:mx-4 p-1 rounded-md transition ease-in-out hover:bg-slate-200 text-[14px] flex-nowrap">
             <NavLink
               className={({ isActive, isPending }) =>
                 isPending
